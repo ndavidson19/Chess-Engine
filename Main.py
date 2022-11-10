@@ -26,6 +26,8 @@ class Main:
     def playEngineMove(self, maxDepth, color):
         engine = ce.Engine(self.board, maxDepth, color)
         self.board.push(engine.getBestMove())
+        print('Engine move: ' + str(self.board.peek()))
+        
 
     #start a game
     def startGame(self):

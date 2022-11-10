@@ -19,8 +19,7 @@ class Engine:
             compt+=self.squareResPoints(ch.SQUARES[i])
         compt += self.mateOpportunity() + self.openning() + 0.001*rd.random()
         return compt
-        
- 
+                
     def mateOpportunity(self):
         if (self.board.legal_moves.count()==0):
             if (self.board.turn == self.color):
@@ -68,70 +67,126 @@ class Engine:
 
         
     def engine(self, candidate, depth):
-        
+
         # For the opening follow the moves from the opening book
-        if (depth == 1 and self.board.fullmove_number<20):
-            return self.opening()
-
-
-        #reached max depth of search or no possible moves
-        if ( depth == self.maxDepth
-        or self.board.legal_moves.count() == 0):
-            return self.evalFunct()
-        
-        else:
-            #get list of legal moves of the current position
-            moveListe = list(self.board.legal_moves)
-            
-            #initialise newCandidate
-            newCandidate = None
-            #(uneven depth means engine's turn)
-            if(depth % 2 != 0):
-                newCandidate = float("-inf")
+        if (depth == 1 and self.board.fullmove_number<24):
+            if(self.opening() != None):
+                return self.opening()
+                    #reached max depth of search or no possible moves
             else:
-                newCandidate = float("inf")
-            
-            #analyse board after deeper moves
-            for i in moveListe:
-
-                #Play move i
-                self.board.push(i)
-
-                #Get value of move i (by exploring the repercussions)
-                value = self.engine(newCandidate, depth + 1) 
-
-                #Basic minmax algorithm:
-                #if maximizing (engine's turn)
-                if(value > newCandidate and depth % 2 != 0):
-                    #need to save move played by the engine
-                    if (depth == 1):
-                        move=i
-                    newCandidate = value
-                #if minimizing (human player's turn)
-                elif(value < newCandidate and depth % 2 == 0):
-                    newCandidate = value
-
-                #Alpha-beta prunning cuts: 
-                #(if previous move was made by the engine)
-                if (candidate != None
-                 and value < candidate
-                 and depth % 2 == 0):
-                    self.board.pop()
-                    break
-                #(if previous move was made by the human player)
-                elif (candidate != None 
-                and value > candidate 
-                and depth % 2 != 0):
-                    self.board.pop()
-                    break
+                #get list of legal moves of the current position
+                moveListe = list(self.board.legal_moves)
                 
-                #Undo last move
-                self.board.pop()
+                #initialise newCandidate
+                newCandidate = None
+                #(uneven depth means engine's turn)
+                if(depth % 2 != 0):
+                    newCandidate = float("-inf")
+                else:
+                    newCandidate = float("inf")
+                
+                #analyse board after deeper moves
+                for i in moveListe:
 
-            #Return result
-            if (depth>1):
-                #eturn value of a move in the tree
-                return newCandidate
+                    #Play move i
+                    self.board.push(i)
+
+                    #Get value of move i (by exploring the repercussions)
+                    value = self.engine(newCandidate, depth + 1) 
+
+                    #Basic minmax algorithm:
+                    #if maximizing (engine's turn)
+                    if(value > newCandidate and depth % 2 != 0):
+                        #need to save move played by the engine
+                        if (depth == 1):
+                            move=i
+                        newCandidate = value
+                    #if minimizing (human player's turn)
+                    elif(value < newCandidate and depth % 2 == 0):
+                        newCandidate = value
+
+                    #Alpha-beta prunning cuts: 
+                    #(if previous move was made by the engine)
+                    if (candidate != None
+                    and value < candidate
+                    and depth % 2 == 0):
+                        self.board.pop()
+                        break
+                    #(if previous move was made by the human player)
+                    elif (candidate != None 
+                    and value > candidate 
+                    and depth % 2 != 0):
+                        self.board.pop()
+                        break
+                    
+                    #Undo last move
+                    self.board.pop()
+
+                #Return result
+                if (depth>1):
+                    #eturn value of a move in the tree
+                    return newCandidate
+                else:
+                    #return the move (only on first move)
+                    return move
+            
+        else:
+            if ( depth == self.maxDepth
+            or self.board.legal_moves.count() == 0):
+                return self.evalFunct()
             else:
-                #return the move (only on first move)
-                return move
+                #get list of legal moves of the current position
+                moveListe = list(self.board.legal_moves)
+                
+                #initialise newCandidate
+                newCandidate = None
+                #(uneven depth means engine's turn)
+                if(depth % 2 != 0):
+                    newCandidate = float("-inf")
+                else:
+                    newCandidate = float("inf")
+                
+                #analyse board after deeper moves
+                for i in moveListe:
+
+                    #Play move i
+                    self.board.push(i)
+
+                    #Get value of move i (by exploring the repercussions)
+                    value = self.engine(newCandidate, depth + 1) 
+
+                    #Basic minmax algorithm:
+                    #if maximizing (engine's turn)
+                    if(value > newCandidate and depth % 2 != 0):
+                        #need to save move played by the engine
+                        if (depth == 1):
+                            move=i
+                        newCandidate = value
+                    #if minimizing (human player's turn)
+                    elif(value < newCandidate and depth % 2 == 0):
+                        newCandidate = value
+
+                    #Alpha-beta prunning cuts: 
+                    #(if previous move was made by the engine)
+                    if (candidate != None
+                    and value < candidate
+                    and depth % 2 == 0):
+                        self.board.pop()
+                        break
+                    #(if previous move was made by the human player)
+                    elif (candidate != None 
+                    and value > candidate 
+                    and depth % 2 != 0):
+                        self.board.pop()
+                        break
+                    
+                    #Undo last move
+                    self.board.pop()
+
+                #Return result
+                if (depth>1):
+                    #eturn value of a move in the tree
+                    return newCandidate
+                else:
+                    #return the move (only on first move)
+                    return move
