@@ -31,7 +31,7 @@
 <br />
 <div align="center">
   <a href="https://github.com/ndavidson19/Chess-Engine">
-    <img src="[https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.chess.com%2Farticle%2Fview%2Fhow-to-set-up-a-chessboard&psig=AOvVaw17fDXNsICopVlv5itfukfy&ust=1670180648844000&source=images&cd=vfe&ved=0CA8QjRxqFwoTCLishfSR3vsCFQAAAAAdAAAAABAF]" alt="Logo" width="80" height="80">
+
   </a>
 
 <h3 align="center">Chess Engine</h3>
