@@ -31,14 +31,16 @@
 <br />
 <div align="center">
   <a href="https://github.com/github_username/repo_name">
-    <img src="[images/logo.png](https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.chess.com%2Farticle%2Fview%2Fhow-to-set-up-a- chessboard&psig=AOvVaw17fDXNsICopVlv5itfukfy&ust=1670180648844000&source=images&cd=vfe&ved=0CA8QjRxqFwoTCLishfSR3vsCFQAAAAAdAAAAABAF)" alt="Logo" width="80" height="80">
-   
+    <img src="[https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.chess.com%2Farticle%2Fview%2Fhow-to-set-up-a-chessboard&psig=AOvVaw17fDXNsICopVlv5itfukfy&ust=1670180648844000&source=images&cd=vfe&ved=0CA8QjRxqFwoTCLishfSR3vsCFQAAAAAdAAAAABAF]" alt="Logo" width="80" height="80">
   </a>
 
 <h3 align="center">Chess Engine</h3>
 
   <p align="center">
-    project_description
+    This repo contains the code for my alpha-beta pruning minimax chess bot. Currently supports the ability to play the bot in console. The bot is estimated to have an ELO ~ 1500. The bot also contains an opening book for many of the most common openingings and gambits. 
+    
+    In progress is migrating the trained model from my neural network project from my other repository over to create a working version that can play with both models.
+    
     <br />
     <a href="https://github.com/ndavidson19/Chess-Engine"><strong>Explore the docs »</strong></a>
     <br />
